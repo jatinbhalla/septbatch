@@ -1,3 +1,4 @@
 assignment1-git
 try commands of following git cheat sheet
 https://about.gitlab.com/images/press/git-cheat-sheet.pdf
+explore git cloning option through ssh
