@@ -7,3 +7,4 @@ assignment2-git
 1. try merge conflict
 2. explore git hub actions
 3. try other git commands
+4. study different branching strategies
