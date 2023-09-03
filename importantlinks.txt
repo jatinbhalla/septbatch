@@ -2,3 +2,7 @@ https://tortoisegit.org/
 https://desktop.github.com/
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 https://github.com/
+https://www.engati.com/blog/git-branching-strategies#:~:text=GIT%20branching%20strategies%20are%20patterns,%2C%20stability%2C%20%26%20release%20management.
+https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy
+https://portal.azure.com/#home
+https://www.freecodecamp.org/news/resolve-merge-conflicts-in-git-a-practical-guide/
