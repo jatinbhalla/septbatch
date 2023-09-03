@@ -1,4 +1,9 @@
 assignment1-git
 try commands of following git cheat sheet
-https://about.gitlab.com/images/press/git-cheat-sheet.pdf
-explore git cloning option through ssh
+1 . https://about.gitlab.com/images/press/git-cheat-sheet.pdf
+2. explore git cloning option through ssh
+
+assignment2-git
+1. try merge conflict
+2. explore git hub actions
+3. try other git commands
