@@ -8,3 +8,9 @@ assignment2-git
 2. explore git hub actions
 3. try other git commands
 4. study different branching strategies
+
+
+assignment3- jenkins
+1. explore jenkins setting
+2. find difference between different types of projects options available in jenkins
+3. try to create simple pipeline
