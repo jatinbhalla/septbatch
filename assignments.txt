@@ -14,3 +14,9 @@ assignment3- jenkins
 1. explore jenkins setting
 2. find difference between different types of projects options available in jenkins
 3. try to create simple pipeline
+
+assignment4:
+1. follow steps 5 and 6 https://learn.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm
+2. try to troubleshoot the error in pipelines
+3. read about pom xml file
+4. https://github.com/spring-guides/gs-spring-boot/blob/main/complete/pom.xml
