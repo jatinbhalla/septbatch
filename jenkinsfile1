@@ -34,7 +34,7 @@ pipeline {
                         sh 'export ARM_TENANT_ID=$AZURE_CREDENTIALS_TENANT_ID'
 
                         // Run Terraform apply
-                        sh 'terraform apply -auto-approve'
+                        sh 'sudo terraform apply -auto-approve'
                     }
                 }
             }
