@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your Git repository
+                git url: 'https://github.com/your/repo.git'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                // Initialize Terraform
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                // Apply Terraform changes
+                script {
+                    withCredentials([azureServicePrincipal(credentialsId: 'your-azure-credentials-id', variable: 'AZURE_CREDENTIALS')]) {
+                        // Set Azure credentials
+                        sh 'export ARM_CLIENT_ID=$AZURE_CREDENTIALS_CLIENT_ID'
+                        sh 'export ARM_CLIENT_SECRET=$AZURE_CREDENTIALS_CLIENT_SECRET'
+                        sh 'export ARM_SUBSCRIPTION_ID=$AZURE_CREDENTIALS_SUBSCRIPTION_ID'
+                        sh 'export ARM_TENANT_ID=$AZURE_CREDENTIALS_TENANT_ID'
+
+                        // Run Terraform apply
+                        sh 'terraform apply -auto-approve'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up, e.g., destroy resources (optional)
+            sh 'terraform destroy -auto-approve'
+        }
+    }
+}
