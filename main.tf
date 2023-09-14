@@ -1,3 +1,6 @@
+provider "azurerm" {
+  features {}
+}
 resource "random_pet" "rg-name" {
   prefix    = var.resource_group_name_prefix
 }
