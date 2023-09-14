@@ -4,8 +4,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                script {
+                    dir('terraform') 
                 // Checkout your Git repository
                 git url: 'https://github.com/jatinbhalla/septbatch.git'
+                }
             }
         }
 
@@ -13,6 +16,8 @@ pipeline {
             steps {
                 // Initialize Terraform
                 script {
+                    sh "pwd"
+                    sh cd/terraform 
                     sh 'terraform init'
                 }
             }
