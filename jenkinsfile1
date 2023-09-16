@@ -40,11 +40,5 @@ pipeline {
                 }
             }
         }
-    }
-    post {
-        success {
-            // Clean up, e.g., destroy resources (optional)
-            sh 'terraform destroy -auto-approve'
-        }
-    }    
+    }  
 }
