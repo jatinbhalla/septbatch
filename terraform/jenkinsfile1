@@ -14,10 +14,10 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 // Initialize Terraform
-                (dir '/var/lib/jenkins/workspace/terraform')
                 script {
-                    
+                    ( dir '/var/lib/jenkins/workspace/terraform' ){
                     sh 'terraform init'
+                    }
                 }
             }
         }
@@ -25,11 +25,10 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 // Apply Terraform changes
-                (dir '/var/lib/jenkins/workspace/terraform')
                 script {
                     withCredentials([azureServicePrincipal(credentialsId: 'cdf11274-e76e-4c3e-9486-743dbc4df682', variable: 'cdf11274-e76e-4c3e-9486-743dbc4df682')]) {
                         // Set Azure credentials
-                        dir '/var/lib/jenkins/workspace/terraform'
+                        (dir '/var/lib/jenkins/workspace/terraform'){
                         sh 'az login --service-principal -u $MY_CRED_CLIENT_ID -p $MY_CRED_CLIENT_SECRET -t $MY_CRED_TENANT_ID'
 
                         sh 'export ARM_CLIENT_ID=$AZURE_CREDENTIALS_CLIENT_ID'
@@ -39,6 +38,7 @@ pipeline {
 
                         // Run Terraform apply
                         sh 'sudo terraform apply -auto-approve'
+                        }
                     }
                 }
             }
