@@ -15,7 +15,7 @@ pipeline {
             steps {
                 // Initialize Terraform
                 script {
-                    sh 'cd terraform | terraform init '
+                    sh ' terraform init | cd terraform'
                     
                 }
             }
