@@ -20,3 +20,8 @@ assignment4:
 2. try to troubleshoot the error in pipelines
 3. read about pom xml file
 4. https://github.com/spring-guides/gs-spring-boot/blob/main/complete/pom.xml
+
+assignment5:
+1. revise terraform commands
+2. try to run terraform code available at https://github.com/jatinbhalla/septbatch/tree/master/terraform
+3. go through terraform cheat sheet https://spacelift.io/blog/terraform-commands-cheat-sheet
