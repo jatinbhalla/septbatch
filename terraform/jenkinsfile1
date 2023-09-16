@@ -14,7 +14,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 // Initialize Terraform
-                dir ( '/var/lib/jenkins/workspace/terraform' ){
+                dir ( '/var/lib/jenkins/workspace/terraform/terraform' ){
                 script { 
                     sh 'terraform init'
                     }
@@ -25,7 +25,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 // Apply Terraform changes
-                dir ('/var/lib/jenkins/workspace/terraform'){
+                dir ('/var/lib/jenkins/workspace/terraform/terraform'){
                 script {
                     withCredentials([azureServicePrincipal(credentialsId: 'cdf11274-e76e-4c3e-9486-743dbc4df682', variable: 'cdf11274-e76e-4c3e-9486-743dbc4df682')]) {
                         // Set Azure credentials
