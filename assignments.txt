@@ -25,3 +25,9 @@ assignment5:
 1. revise terraform commands
 2. try to run terraform code available at https://github.com/jatinbhalla/septbatch/tree/master/terraform
 3. go through terraform cheat sheet https://spacelift.io/blog/terraform-commands-cheat-sheet
+
+
+assignment6:
+1. try to execute ansible play book and role
+2. try to troubleshoot things
+3. try to figure out how to execute ansible roles from jenkins
