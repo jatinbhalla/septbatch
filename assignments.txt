@@ -31,3 +31,9 @@ assignment6:
 1. try to execute ansible play book and role
 2. try to troubleshoot things
 3. try to figure out how to execute ansible roles from jenkins
+
+assignment7:
+1. try to pull different images
+2. run image and commit those containers
+3. push those container on docker hub
+4. study docker cheat sheet
