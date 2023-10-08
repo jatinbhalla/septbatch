@@ -37,3 +37,7 @@ assignment7:
 2. run image and commit those containers
 3. push those container on docker hub
 4. study docker cheat sheet
+
+
+assignemts8:
+try to go through :https://www.azuredevopslabs.com/labs/vstsextend/kubernetes/
