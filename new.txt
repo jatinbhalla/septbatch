@@ -1,0 +1,90 @@
+name: Terraform Demo
+parameters:
+  - name: agentPool
+    displayName: "agent1"
+    values:
+      - default
+  - name: productName
+    displayName: "Product Name"
+    type: string
+  - name: environment
+    displayName: "Environment"
+    type: string
+    values:
+      - Dev
+      - Prod
+
+trigger: none
+
+variables:
+ - group: ${{ parameters.productName }} - ${{ parameters.environment }}
+
+jobs:
+  - job: Resources_Provisioning
+    displayName: Resources_Provisioning
+    pool:
+       name: ${{ parameters.agentPool }}
+    steps:
+      - task: replacetokens@4
+        displayName: "Replace config values with variable"
+        inputs:
+          rootDirectory: '$(System.DefaultWorkingDirectory)/Terraform/env_vars'
+          targetFiles: '${{ parameters.productName }}-${{ parameters.environment }}.auto.tfvars'
+          encoding: 'auto'
+          tokenPattern: 'custom'
+          tokenPrefix: '#_'
+          tokenSuffix: '_#'
+          writeBOM: true
+          actionOnMissing: 'warn'
+          keepToken: false
+          actionOnNoFiles: 'continue'
+          enableTransforms: false
+          useLegacyPattern: false
+          enableTelemetry: true
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+        displayName: 'Terraform Install'
+        inputs:
+          terraformVersion: '1.6.1'
+      - task: TerraformCLI@0
+        displayName: Terraform Init
+        inputs:
+          command: 'init'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+          backendType: 'azurerm'
+          backendServiceArm: '$(service_connection)'
+          ensureBackend: true
+          backendAzureRmResourceGroupName: '$(tf_backend_resource_group)'
+          backendAzureRmResourceGroupLocation: '$(region)'
+          backendAzureRmStorageAccountName: '$(tf_backend_storage_account)'
+          backendAzureRmContainerName: '$(tf_backend_container)'
+          backendAzureRmKey: '$(tf_backend_state_file_name)'
+          allowTelemetryCollection: true
+      - task: TerraformTaskV2@2
+        displayName: "Terraform Plan"
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+          commandOptions: '-lock=false -input=false -out=tfplan -var-file="env_vars/${{ parameters.productName }}-${{ parameters.environment }}.auto.tfvars"'
+          environmentServiceNameAzureRM: $(service_connection)
+          publishPlanResults: "tfplan"
+
+      - task: TerraformTaskV2@2
+        displayName: "Terraform Apply"
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+          commandOptions: '-input=false -auto-approve tfplan'
+          environmentServiceNameAzureRM: $(service_connection)
+        enabled: false
+          
+      - task: TerraformTaskV2@2
+        displayName: Terraform Destroy
+        inputs:
+          provider: 'azurerm'
+          command: 'destroy'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+          commandOptions: '-lock=false -input=false -auto-approve -var-file="env_vars/${{ parameters.productName }}-${{ parameters.environment }}.auto.tfvars"'
+          environmentServiceNameAzureRM: $(service_connection)
+        enabled: true
