@@ -7,3 +7,5 @@ create environment variables in jenkins for service principal
 install azure authentication plugin
 install sudo plugin if required
 pass environment variables in jenkins
+
+https://plugins.jenkins.io/azure-credentials/
