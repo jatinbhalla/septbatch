@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        credentials_id = credentials('credentials_id')
+        MY_CRED = credentials('credentials_id')
     }
     stages {
         stage('Checkout') {
