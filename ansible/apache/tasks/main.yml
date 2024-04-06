@@ -1,4 +1,4 @@
 ---
-  - include: install.yml
-  - include: configure.yml
-  - include: service.yml
+  - include_taks: install.yml
+  - include_taks: configure.yml
+  - include_taks: service.yml
