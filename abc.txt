@@ -1,0 +1,6 @@
+install-Module -Name AzureAD -Scope CurrentUser -Force
+Install-Module -Name Az.Accounts -Scope CurrentUser -Force
+Import-Module -Name AzureAD -Force
+Import-Module -Name Az.Accounts -Force
+
+-AppName $(AppName) -RoleName $(RoleName) -userEmail $(userEmail) -secret $(secret) -tenantid $(tenantid)  -spnid $(spnid)
