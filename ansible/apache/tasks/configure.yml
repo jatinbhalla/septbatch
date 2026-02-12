@@ -1,7 +1,5 @@
----
- -  name:  apache2.conf file
-    copy: src=apache2.conf dest=/etc/apache2/
-    notify:
-     - restart apache2 service
+---    
  -  name: send copy.html file
     copy: src=copy.html dest=/home/ubuntu
+    notify:
+     - restart apache2 service
